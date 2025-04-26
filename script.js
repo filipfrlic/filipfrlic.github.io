@@ -6,9 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.backgroundColor = 'var(--bg-color)';
     }
     
-    // Initialize theme toggle
-    initializeThemeToggle();
-    
     // Wait for header component to load before animating content
     // And for content-loaded class to be added
     const waitForLoading = setInterval(() => {
@@ -17,39 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
             initializeAnimations();
         }
     }, 50);
-    
-    function initializeThemeToggle() {
-        const themeToggle = document.getElementById('theme-toggle');
-        const moonIcon = '<i class="fas fa-moon"></i>';
-        const sunIcon = '<i class="fas fa-sun"></i>';
-        const toggleText = themeToggle.querySelector('.toggle-text');
-        
-        // Set initial icon and text based on current theme
-        if (isDarkMode) {
-            themeToggle.innerHTML = sunIcon + '<span class="toggle-text">Light Mode</span>';
-        } else {
-            themeToggle.innerHTML = moonIcon + '<span class="toggle-text">Dark Mode</span>';
-        }
-        
-        // Add click event listener to toggle theme
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            // Update data-theme attribute
-            document.documentElement.setAttribute('data-theme', newTheme);
-            
-            // Save theme preference to localStorage
-            localStorage.setItem('theme', newTheme);
-            
-            // Update toggle button text and icon
-            if (newTheme === 'dark') {
-                themeToggle.innerHTML = sunIcon + '<span class="toggle-text">Light Mode</span>';
-            } else {
-                themeToggle.innerHTML = moonIcon + '<span class="toggle-text">Dark Mode</span>';
-            }
-        });
-    }
     
     function initializeAnimations() {
         // Get page elements

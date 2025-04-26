@@ -1,14 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Get the base path for current page
-    const currentPath = window.location.pathname;
-    const isInSubfolder = currentPath.includes('/blog/');
-    const basePath = isInSubfolder ? '../' : '';
-    
     // Load the header component
     const headerPlaceholder = document.getElementById('header-placeholder');
     if (headerPlaceholder) {
         // Use current directory's header or the root header
-        const headerPath = isInSubfolder ? 'header.html' : 'header.html';
+        const headerPath = 'header.html';
         
         fetch(headerPath)
             .then(response => {
@@ -20,20 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(() => {
                 // Try with absolute path from root
-                const rootHeaderPath = isInSubfolder ? '/blog/header.html' : '/header.html';
-                return fetch(rootHeaderPath).then(resp => resp.text());
+                return fetch('/header.html').then(resp => resp.text());
             })
             .then(data => {
                 // Replace placeholder with header content
                 headerPlaceholder.innerHTML = data;
-                
-                // Set active navigation item based on current page
-                const currentPage = window.location.pathname;
-                if (currentPage.includes('/blog/')) {
-                    document.getElementById('nav-blog').classList.add('active');
-                } else {
-                    document.getElementById('nav-home').classList.add('active');
-                }
                 
                 // Initialize dark mode after header is loaded
                 initializeDarkMode();
