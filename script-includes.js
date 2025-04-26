@@ -1,8 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Get the base path for current page
+    const currentPath = window.location.pathname;
+    const isInSubfolder = currentPath.includes('/blog/');
+    const basePath = isInSubfolder ? '../' : '';
+    
     // Load the header component
     const headerPlaceholder = document.getElementById('header-placeholder');
     if (headerPlaceholder) {
-        fetch('header.html')
+        // Use current directory's header or the root header
+        const headerPath = isInSubfolder ? 'header.html' : 'header.html';
+        
+        fetch(headerPath)
             .then(response => response.text())
             .then(data => {
                 // Replace placeholder with header content
@@ -10,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Set active navigation item based on current page
                 const currentPage = window.location.pathname;
-                if (currentPage.includes('blog.html')) {
+                if (currentPage.includes('/blog/')) {
                     document.getElementById('nav-blog').classList.add('active');
                 } else {
                     document.getElementById('nav-home').classList.add('active');
