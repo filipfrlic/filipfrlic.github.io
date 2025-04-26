@@ -16,24 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 50);
     
     function initializeAnimations() {
-        // Check which page we're on
-        const isHomePage = window.location.pathname === '/' || 
-                          window.location.pathname.includes('index.html');
-        const isBlogPage = window.location.pathname.includes('blog.html');
-        
-        // Get page-specific elements
+        // Get page elements
         const header = document.querySelector('.header-content');
         const footer = document.querySelector('footer');
-        let sections = [];
-        
-        // Get the appropriate sections based on the page
-        if (isHomePage) {
-            sections = document.querySelectorAll('main section, section.about, section.resume, section.projects, section.education, section.skills, section.contact');
-        } else if (isBlogPage) {
-            sections = document.querySelectorAll('section.blog-intro, section.blog-posts');
-        } else {
-            sections = document.querySelectorAll('section');
-        }
+        const sections = document.querySelectorAll('main section, section.about, section.resume, section.projects, section.education, section.skills, section.contact');
         
         // Apply initial styles for fade-in animation
         [header, ...sections, footer].forEach(element => {
@@ -69,36 +55,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 footer.style.transform = 'translateY(0)';
             }
         }, 400 + (sections.length * 200));
-        
-        // Add page transition functionality
-        document.addEventListener('click', function(e) {
-            // Only intercept links to our own pages
-            const link = e.target.closest('a');
-            if (link && link.hostname === window.location.hostname) {
-                const href = link.getAttribute('href');
-                
-                // Only animate if we're navigating to a different page
-                if (href && (href !== window.location.pathname.split('/').pop())) {
-                    e.preventDefault();
-                    
-                    // Get current theme to pass to the next page
-                    const currentTheme = document.documentElement.getAttribute('data-theme');
-                    
-                    // Add loading indicator before transition
-                    const loadingIndicator = document.createElement('div');
-                    loadingIndicator.className = 'loading-indicator';
-                    document.body.appendChild(loadingIndicator);
-                    
-                    // Fade out content
-                    document.body.style.opacity = '0.5';
-                    document.body.style.transition = 'opacity 0.3s ease';
-                    
-                    // Navigate after animation completes
-                    setTimeout(() => {
-                        window.location.href = href;
-                    }, 300);
-                }
-            }
-        });
     }
 }); 

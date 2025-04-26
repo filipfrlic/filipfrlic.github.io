@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Handle blog post URLs (except for the blog index)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^blog/([^/]+)/?$ blog/post.html [L]
+
+# Redirect /posts/ URLs to /blog/ URLs
+RewriteRule ^posts/(.*)$ /blog/$1 [R=301,L] 
