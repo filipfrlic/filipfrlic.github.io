@@ -11,7 +11,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const headerPath = isInSubfolder ? 'header.html' : 'header.html';
         
         fetch(headerPath)
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) {
+                    // Fallback to absolute path if relative path fails
+                    throw new Error('Header not found at relative path');
+                }
+                return response.text();
+            })
+            .catch(() => {
+                // Try with absolute path from root
+                const rootHeaderPath = isInSubfolder ? '/blog/header.html' : '/header.html';
+                return fetch(rootHeaderPath).then(resp => resp.text());
+            })
             .then(data => {
                 // Replace placeholder with header content
                 headerPlaceholder.innerHTML = data;
