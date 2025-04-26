@@ -1,0 +1,448 @@
+/* Color Variables */
+:root {
+    --bg-color: #fff;
+    --text-color: #000;
+    --accent-bg: #f0f0f0;
+    --hover-color: #444;
+    --border-color: #f0f0f0;
+    --underline-color: #000;
+    --btn-hover: #f0f0f0;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --accent-bg: #333;
+    --hover-color: #aaa;
+    --border-color: #333;
+    --underline-color: #e0e0e0;
+    --btn-hover: #333;
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    max-width: 100vw;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Typography */
+h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-color);
+    transition: background-color 0.3s ease;
+}
+
+h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--hover-color);
+}
+
+ul {
+    list-style-position: inside;
+    margin-bottom: 1rem;
+}
+
+/* Theme Toggle */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.theme-toggle {
+    background: none;
+    border: 1px solid var(--text-color);
+    border-radius: 20px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background-color: var(--btn-hover);
+}
+
+.theme-toggle i {
+    font-size: 1rem;
+}
+
+/* Icons */
+.fab {
+    margin-right: 5px;
+    font-size: 1.1em;
+}
+
+/* Header */
+header {
+    margin-bottom: 3rem;
+}
+
+.header-content {
+    margin-top: 3rem;
+}
+
+.tagline {
+    font-size: 1.25rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.location {
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+.location a {
+    display: inline-flex;
+    align-items: center;
+}
+
+.location a:hover {
+    text-decoration: none;
+    opacity: 0.7;
+}
+
+/* Sections */
+section {
+    margin-bottom: 3rem;
+}
+
+.about {
+    text-align: justify;
+}
+
+.about p {
+    max-width: 100%;
+    margin-bottom: 1.2rem;
+    line-height: 1.7;
+}
+
+.about p:last-child {
+    margin-bottom: 0;
+}
+
+/* Resume Section */
+.job, .project, .degree {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color 0.3s ease;
+}
+
+.job:last-child, .project:last-child, .degree:last-child {
+    border-bottom: none;
+}
+
+.job-header {
+    margin-bottom: 1rem;
+}
+
+.job-company, .job-period, .job-location, .project-period {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+}
+
+.job-company {
+    font-weight: 600;
+}
+
+.job-period, .job-location, .project-period {
+    opacity: 0.7;
+}
+
+.job-responsibilities, .project-details {
+    list-style-type: disc;
+    margin-left: 1rem;
+}
+
+.job-responsibilities li, .project-details li {
+    margin-bottom: 0.5rem;
+}
+
+/* Skills */
+.skills ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.skills li {
+    background-color: var(--accent-bg);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    transition: all 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.skills li:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+/* Contact */
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.social-link {
+    color: var(--text-color);
+    text-decoration: none;
+    position: relative;
+    font-weight: 500;
+    transition: all 0.2s ease, color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.social-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--underline-color);
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.social-link:hover {
+    text-decoration: none;
+}
+
+.social-link:hover::after {
+    width: 100%;
+}
+
+/* Links */
+.job-company a, .job-responsibilities a, .degree a {
+    position: relative;
+    display: inline-block;
+}
+
+.job-company a::after, .job-responsibilities a::after, .degree a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--underline-color);
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.job-company a:hover::after, .job-responsibilities a:hover::after, .degree a:hover::after {
+    width: 100%;
+}
+
+.job-company a:hover, .job-responsibilities a:hover, .degree a:hover {
+    text-decoration: none;
+}
+
+/* Footer */
+footer {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .container {
+        padding: 1.5rem;
+    }
+    
+    .skills ul {
+        gap: 0.75rem;
+    }
+    
+    .social-links {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .header-top {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .toggle-text {
+        display: none;
+    }
+    
+    .theme-toggle {
+        padding: 0.4rem;
+        min-width: 36px;
+        justify-content: center;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Navigation */
+.main-nav {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    justify-content: center;
+    background-color: var(--bg-color);
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.main-nav a {
+    position: relative;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease;
+}
+
+.main-nav a.active {
+    font-weight: 600;
+}
+
+.main-nav a.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-color);
+}
+
+.main-nav a:hover {
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.main-nav a:not(.active)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--text-color);
+    transition: width 0.3s ease;
+}
+
+.main-nav a:not(.active):hover::after {
+    width: 100%;
+}
+
+/* Initial Page Loading State */
+body:not(.content-loaded) main,
+body:not(.content-loaded) footer {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Loading Indicator */
+.loading-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--accent-bg), var(--text-color));
+    animation: loading 1.5s infinite;
+    z-index: 1000;
+}
+
+@keyframes loading {
+    0% { width: 0%; left: 0; }
+    50% { width: 70%; left: 15%; }
+    100% { width: 0%; left: 100%; }
+} 
